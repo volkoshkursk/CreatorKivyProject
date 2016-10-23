@@ -1,6 +1,11 @@
 #:kivy 1.9.1
 #:import MDList kivymd.list.MDList
 
+<RightButton>:
+    size_hint_x: None
+    size_hint_y: None
+    size: 30, 30
+
 <CheckItem>:
     on_press: root.events_callback(root.id, self.state, 'item')
     LeftIcon:
