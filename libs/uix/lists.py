@@ -32,6 +32,7 @@ class LeftIcon(ILeftBody, Image):
 class Icon(CircularRippleBehavior, ButtonBehavior, Image):
     pass
 
+
 class RightButton(IRightBodyTouch,  Icon):
     pass
 
@@ -61,35 +62,28 @@ class IconItemThree(ThreeLineAvatarIconListItem):
 
 class IconItem(TwoLineAvatarIconListItem):
     events_callback = ObjectProperty(None)
-    '''Функция обработки сигналов экрана.'''
-
     icon = StringProperty()
-    '''Путь к иконке списка.'''
 
 
 class Item(OneLineListItem):
     events_callback = ObjectProperty(None)
-    '''Функция обработки сигналов экрана.'''
 
 
 class SingleIconItem(OneLineIconListItem):
     events_callback = ObjectProperty(None)
-    '''Функция обработки сигналов экрана.'''
-
     icon = StringProperty()
-    '''Путь к иконке списка.'''
+
 
 
 class Lists(BoxLayout):
-    events_callback = ObjectProperty(None)
+    events_callback = ObjectProperty(lambda: None)
     '''Функция обработки сигналов экрана.'''
 
     dict_items = DictProperty()
     '''{'Name item': ['Desc item', 'icon_item.png', True/False}.'''
 
     list_items = ListProperty()
-    '''['Item one', 'Item two', ...];
-       [['Item one', 'name icon', True/False], ...].'''
+    '''{'Name item': ['Desc item', 'icon_item.png', True/False}.'''
 
     right_icons = ListProperty()
     '''Список путей к иконкам для кнопок,
@@ -121,10 +115,7 @@ class Lists(BoxLayout):
                 )
 
                 for image in self.right_icons:
-                    right_button = RightButton(
-                        source=image, size_hint_x=None, size_hint_y=None,
-                        size=(30, 30)
-                    )
+                    right_button = RightButton(source=image)
                     icon_item.add_widget(right_button)
                 self.ids.md_list.add_widget(icon_item)
         elif self.flag == 'three_list_custom_icon':
@@ -161,6 +152,8 @@ class Lists(BoxLayout):
 
         '''
 
+        list_items = self.ids.list_items
+
         for name_item in dict_items.keys():
             desc_item, icon_item = dict_items[name_item]
             icon_item = IconItemThree(
@@ -169,13 +162,12 @@ class Lists(BoxLayout):
             )
 
             for image in self.right_icons:
-                right_button = RightButton(
-                    id='{}, {}'.format(
-                        name_item, os.path.split(image)[1].split('.')[0]),
-                    source=image, size_hint_x=None, size_hint_y=None,
-                    size=(30, 30), on_release=self.events_callback
+                icon_item.add_widget(
+                    RightButton(
+                        id='{}, {}'.format(
+                            name_item, os.path.split(image)[1].split('.')[0]),
+                        source=image, on_release=self.events_callback
+                    )
                 )
-
-                icon_item.add_widget(right_button)
-            self.ids.list_items.add_widget(icon_item)
+            list_items.add_widget(icon_item)
 
