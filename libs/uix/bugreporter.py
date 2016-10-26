@@ -72,7 +72,7 @@ class BugReporter(FloatLayout):
     txt_button_close = StringProperty('Close')
     """Подписи кнопок"""
 
-    Builder.load_file('{}/libs/uix/kv/bugreporter.kv'.format(
+    Builder.load_file('{}/libs/uix/kv/activity/bugreporter.kv'.format(
         os.path.split(os.path.abspath(sys.argv[0]))[0].split("/libs/uix")[0]))
     """Макет интерфейса"""
 
