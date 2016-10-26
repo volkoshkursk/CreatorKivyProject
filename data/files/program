@@ -43,7 +43,10 @@ class Program(App, _class.ShowPlugin, _class.ShowAbout, _class.ShowLicense):
         Window.bind(on_keyboard=self.events_program)
 
         self.data = data
-        self.load_all_kv_files()
+        self.load_all_kv_files('{}/libs/uix/kv'.format(self.directory))
+        self.load_all_kv_files(
+            '{}/libs/uix/kv/activity'.format(self.directory)
+        )
 
     def build_config(self, config):
         config.adddefaultsection('General')
@@ -133,13 +136,12 @@ class Program(App, _class.ShowPlugin, _class.ShowAbout, _class.ShowLicense):
             ]
         )
 
-    def load_all_kv_files(self):
-        directory_kv_files = '{}/libs/uix/kv'.format(self.directory)
-
-        for kv_files in os.listdir(directory_kv_files):
-            if kv_files == 'bugreporter.kv':
+    def load_all_kv_files(self, directory_kv_files):
+        for kv_file in os.listdir(directory_kv_files):
+            if kv_file == 'bugreporter.kv' or os.path.isdir('{}/{}'.format(
+                    directory_kv_files, kv_file)):
                 continue
-            Builder.load_file('{}/{}'.format(directory_kv_files, kv_files))
+            Builder.load_file('{}/{}'.format(directory_kv_files, kv_file))
 
     def on_config_change(self, config, section, key, value):
         '''Вызывается при выборе одного из пункта настроек программы.'''
