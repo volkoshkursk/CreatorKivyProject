@@ -13,9 +13,8 @@ class ShowAbout(object):
         dialog(
             text=self.data.string_lang_about.format(
                 LINK_COLOR=self.data.text_link_color),
-            title=self.title, ref_callback=self.events_callback
+            title=self.title, ref_callback=self._callback
         )
 
-    def events_callback(self, instance, text_link):
+    def _callback(self, instance, text_link):
         print(instance, text_link)
-
