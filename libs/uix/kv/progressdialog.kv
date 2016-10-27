@@ -1,51 +1,42 @@
-#:kivy 1.9.1
-#:import MDFlatButton kivymd.button.MDFlatButton
-#:import MDSpinner kivymd.spinner.MDSpinner
-#:import MDProgressBar kivymd.progressbar.MDProgressBar
-#:import MDCard kivymd.card.MDCard
-#:import MDLabel kivymd.label.MDLabel
+#: kivy 1.9.1
+#: import MDFlatButton kivymd.button.MDFlatButton
+#: import MDSpinner kivymd.spinner.MDSpinner
+#: import MDProgressBar kivymd.progressbar.MDProgressBar
+#: import MDCard kivymd.card.MDCard
 
-###############################################################################
-#
-#                                ОКНО ПРОГРЕССА
-#
-###############################################################################
+# Окно прогресса.
+
 [Progress@ModalView]:
     size_hint: .8, .4
     background_color: 0, 0, 0, .2
+
     MDCard:
         BoxLayout:
             orientation: 'vertical'
-            FloatLayout:
-                pos_hint: {'x': .2, 'y': .4}
-                size_hint: .6, .2
-                MDSpinner:
-                    id: progress
-                    size_hint: None, None
-                    size: dp(46), dp(46)
-                    pos_hint: {'center_x': .5, 'center_y': .6}
-                    active: True
-                MDLabel:
-                    theme_text_color: 'Secondary'
-                    font_style:"Title"
-                    text: ctx.text_wait
-                    halign: 'center'
-                    pos_hint: {'x': 0}
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    y: progress.center_y - self.height - 35
-                MDLabel:
-                    id: label
-                    theme_text_color: 'Primary'
-                    halign: 'center'
-                    pos_hint: {'x': 0}
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    y: progress.center_y - self.height - 75
-            AnchorLayout:
-                pos_hint: {'x': .2, 'y': .1}
-                size_hint: .6, .2
-                MDFlatButton:
-                    text: ctx.text_button_cancel
-                    on_release: ctx.events_callback('Cancel')
+            padding: dp(0), dp(10)
+
+            Widget:
+
+            MDSpinner:
+                id: progress
+                size_hint: None, None
+                size: dp(46), dp(46)
+                pos_hint: {'center_x': .5}
+                active: True
+
+            Label:
+                id: label
+                text: ctx.text_wait
+                markup: True
+                halign: 'center'
+                size_hint_y: None
+                height: 50
+
+            Widget:
+
+            MDFlatButton:
+                text: ctx.text_button_cancel
+                pos_hint: {'center_x': .5}
+                on_release: ctx.events_callback('Cancel')
+
 
