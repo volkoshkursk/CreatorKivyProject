@@ -9,6 +9,7 @@
 [Progress@ModalView]:
     size_hint: .8, .4
     background_color: 0, 0, 0, .2
+    auto_dismiss: False
 
     MDCard:
         BoxLayout:
@@ -30,13 +31,11 @@
                 markup: True
                 halign: 'center'
                 size_hint_y: None
-                height: 50
+                height: dp(50)
 
             Widget:
 
             MDFlatButton:
                 text: ctx.text_button_cancel
                 pos_hint: {'center_x': .5}
-                on_release: ctx.events_callback('Cancel')
-
-
+                on_release: ctx.events_callback(ctx.text_button_cancel)
