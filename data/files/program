@@ -43,6 +43,7 @@ class Program(App, _class.ShowPlugin, _class.ShowAbout, _class.ShowLicense):
         Window.bind(on_keyboard=self.events_program)
 
         self.data = data
+        self.open_exit_dialog = None
         self.load_all_kv_files('{}/libs/uix/kv'.format(self.directory))
         self.load_all_kv_files(
             '{}/libs/uix/kv/activity'.format(self.directory)
@@ -128,11 +129,18 @@ class Program(App, _class.ShowPlugin, _class.ShowAbout, _class.ShowLicense):
         )
 
     def exit_program(self, *args):
-        window = dialog(
+        def close_dialog():
+            self.open_exit_dialog.dismiss()
+            self.open_exit_dialog = None
+
+        if self.open_exit_dialog:
+            return
+
+        self.open_exit_dialog = dialog(
             text=data.string_lang_exit, title=self.title, dismiss=False,
             buttons=[
                 [data.string_lang_yes, lambda *x: sys.exit(0)],
-                [data.string_lang_no, lambda *x: window.dismiss()]
+                [data.string_lang_no, lambda *x: close_dialog()]
             ]
         )
 
