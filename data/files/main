@@ -32,7 +32,7 @@ try:
     # Config.set('graphics', 'height', '600')
 
     # Activity баг репорта.
-    from libs.uix.bugreporter import BugReporter
+    from libs.uix.kv.activity.baseclass.bugreporter import BugReporter
 except Exception:
     traceback.print_exc(file=open('{}/error.log'.format(directory), 'w'))
     sys.exit(1)
