@@ -16,7 +16,8 @@ from kivy.utils import get_hex_from_color
 
 from libs.uix import customsettings
 from libs.uix.dialogs import dialog
-from libs.uix.startscreen import StartScreen
+
+from libs.uix.kv.activity.baseclass.startscreen import StartScreen
 
 from libs import programdata as data
 from libs import programclass as _class
