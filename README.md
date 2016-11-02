@@ -49,7 +49,7 @@ python3 main.py name_project path_to_project
 
 ВЕРСИЯ
 ------
-Version 0.1.3
+Version 0.1.4
 
 КОНТАКТЫ
 --------
