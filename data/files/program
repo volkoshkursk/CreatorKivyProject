@@ -147,8 +147,8 @@ class Program(App, _class.ShowPlugin, _class.ShowAbout, _class.ShowLicense):
 
     def load_all_kv_files(self, directory_kv_files):
         for kv_file in os.listdir(directory_kv_files):
-            if kv_file == 'bugreporter.kv' or os.path.isdir('{}/{}'.format(
-                    directory_kv_files, kv_file)):
+            if kv_file in ('bugreporter.kv', '__init__.py') or \
+                    os.path.isdir('{}/{}'.format(directory_kv_files, kv_file)):
                 continue
             Builder.load_file('{}/{}'.format(directory_kv_files, kv_file))
 
