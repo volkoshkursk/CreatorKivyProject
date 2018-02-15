@@ -6,7 +6,7 @@ CreatorKivyProject
 
 ЯЗЫК ПРОГРАММИРОВАНИЯ
 ---------------------
-Python 3
+Python 3.6
 
 ЗАВИСИМОСТИ
 -----------
@@ -18,20 +18,14 @@ Python 3
 ---------
 Скачайте и распакуйте архив в любую удобную директорию.
 
-https://github.com/HeaTTheatR/CreatorKivyProject.git
-
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/CreatorKivyProject/master/screenshots/previous.png)
+![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/CreatorKivyProject/master/screenshot.png)
 
 СОЗДАНИЕ ПРОЕКТА
 ----------------
-```python
-python3 main.py name_project path_to_project -repo repo_project_on_github -autor name autor -mail mail autor
-```
-
-Или
+Запустите скрипт main.py в консоли:
 
 ```python
-python3 main.py name_project path_to_project
+python main.py name_project version_project your_copyright path_to_project -repo repo_project_on_github -autor name_autor -mail mail_autor -site site_project
 ```
 
 АРГУМЕНТЫ КОМАНДНОЙ СТРОКИ
@@ -39,20 +33,26 @@ python3 main.py name_project path_to_project
 
 **name** - Имя проекта
 
+**version** - Версия проекта
+
+**copyright** - Копирайт автора
+
 **path** - Директория проекта
 
-**-repo** - Адресс репозитория проекта на GitHub
+**-repo** - Адрес репозитория на GitHub
 
-**-autor** - Имя автора создаваемого проекта
+**-author** - Имя автора проекта
 
-**-mail** - Почта автора создаваемого проекта
+**-mail** - Почта автора проекта
+
+**-site** - Сайт проекта
 
 ВЕРСИЯ
 ------
-Version 0.1.5
+Version 2.2.2
 
 КОНТАКТЫ
 --------
-Email: gorodage@gmail.com
+Email: kivydevelopment@gmail.com
 
 [Аккаунт на Хабре](https://habrahabr.ru/users/heattheatr/)

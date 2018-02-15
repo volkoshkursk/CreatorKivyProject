@@ -1,139 +1,143 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
-#! /usr/bin/python3.4
-# -*- coding: utf-8 -*-
-#
-# main.py
-#
-# Точка входа в приложение. Запускает основной программный код program.py.
-# В случае ошибки, выводит на экран окно с ее текстом.
-#
-
 import os
 import sys
+
 import shutil
 import argparse
 import traceback
+import shutil
 
-try:
-    from kivy.logger import Logger
-except Exception:
-    import traceback
-    raise(traceback.format_exc())
+from kivy.logger import Logger
 
-__version__ = '0.1.2'
+
+def write_file(in_file, out_file, values=False):
+    string_file = open(out_file).read()
+    if values:
+        for key in values.keys():
+            if not values[key]:
+                continue
+            string_file = string_file.replace(key, values[key])
+        open(in_file, 'w', encoding='utf-8').write(string_file)
+    else:
+        open(in_file, 'w', encoding='utf-8').write(string_file)
+
+
+def copy_files(directory):
+    print(directory)
+    for directory, dirs, files in os.walk(directory):
+        directory_created = directory.split(prog_path)[1]
+        print(FULL_PATH_TO_PROJECT + directory_created)
+        os.mkdir(FULL_PATH_TO_PROJECT + directory_created)
+        for file in files:
+            file_created = FULL_PATH_TO_PROJECT + os.path.join(directory_created, file)
+            print('        ' + file_created)
+            shutil.copyfile(os.path.join(directory, file), file_created)
+        print()
+
+
+__version__ = '2.2.2'
+Logger.info('Creator Kivy Project version: ' + __version__)
 
 if len(sys.argv) <= 1:
     Logger.warning('''
 Используйте скрипт со строковыми аргументами:
 
 'name' - Имя проекта
+'version' - Версия проекта
 'path' - Директория проекта
-'repo' - Адресс репозитория на GitHub (необязательный параметр)
+'repo' - Адрес репозитория на GitHub (необязательный параметр)
 'autor' - Имя автора проекта (необязательный параметр)
 'mail' - Почта автора проекта (необязательный параметр)
+'site' - Сайт проекта (необязательный параметр)
 ''')
     sys.exit(0)
 
 prog_path = os.path.split(os.path.abspath(sys.argv[0]))[0]
-# sys.dont_write_bytecode = True
+sys.dont_write_bytecode = True
 
 parser = argparse.ArgumentParser()
 parser.add_argument('name', type=str, help='Имя проекта')
+parser.add_argument('version', type=str, help='Версия проекта')
+parser.add_argument('copyright', type=str, help='Копирайт')
 parser.add_argument('path', type=str, help='Директория проекта')
-parser.add_argument('-repo', type=str, help='Адресс репозитория на GitHub')
-parser.add_argument('-autor', type=str, help='Имя автора проекта')
+parser.add_argument('-repo', type=str, help='Адрес репозитория на GitHub')
+parser.add_argument('-author', type=str, help='Имя автора проекта')
 parser.add_argument('-mail', type=str, help='Почта автора проекта')
+parser.add_argument('-site', type=str, help='Сайт проекта')
 
-name_project = parser.parse_args().name
-dir_project = parser.parse_args().path
-repo_project = parser.parse_args().repo
-name_autor = parser.parse_args().autor
-address_mail = parser.parse_args().mail
+SITE_PROJECT = parser.parse_args().site
+VERSION_PROJECT = parser.parse_args().version
+COPYRIGHT_PROJECT = parser.parse_args().copyright
+NAME_PROJECT = parser.parse_args().name
+DIR_PROJECT = parser.parse_args().path
+REPO_PROJECT = parser.parse_args().repo
+NAME_AUTHOR = parser.parse_args().author
+ADDRESS_MAIL = parser.parse_args().mail
+FULL_PATH_TO_PROJECT = os.path.join(DIR_PROJECT, NAME_PROJECT)
 
-full_path_to_project = '{}/{}'.format(dir_project, name_project)
-dir_language = '{}/data/language'.format(full_path_to_project)
-dir_settings = '{}/data/settings'.format(full_path_to_project)
-dir_license = '{}/license'.format(full_path_to_project)
-
-Logger.info('Creator Kivy Project version {} ...\n'.format(__version__))
-
-if os.path.exists(full_path_to_project):
-    Logger.error('Проект {} уже существует!'.format(name_project))
+if os.path.exists(FULL_PATH_TO_PROJECT):
+    Logger.error(f'Проект {NAME_PROJECT} уже существует!')
     sys.exit(0)
 
 try:
-    for directory in [full_path_to_project, dir_language, dir_settings]:
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-            Logger.info('Создана директория проекта {} ...'.format(directory))
+    os.makedirs(FULL_PATH_TO_PROJECT)
+    Logger.info(f'Создана директория проекта {FULL_PATH_TO_PROJECT} ...')
 except FileNotFoundError:
-    Logger.error('Указанная директория {} не существует!'.format(dir_project))
-except PermissionError:
+    Logger.error(f'Указанная директория {DIR_PROJECT} не существует!')
+except Exception:
+    print(traceback.format_exc())
     Logger.error(
-        'У вас нет прав для создания проекта в директории {}!'.format(
-            dir_project
-        )
+        f'У вас нет прав для создания проекта в директории {DIR_PROJECT}!'
     )
+
 try:
     Logger.info('Создание точки входа main.py ...')
-    open('{}/main.py'.format(full_path_to_project), 'w', encoding='utf-8').write(
-        open('{}/data/files/main'.format(prog_path), encoding='utf-8').read() % repo_project)
-
-    Logger.info('Создание файла языковой локализации russian.txt ...')
-    open('{}/russian.txt'.format(dir_language), 'w', encoding='utf-8').write(
-        open('{}/data/files/russian'.format(prog_path), encoding='utf-8').read().format(
-            NAME_PROJECT=name_project,
-            REPOSITORY=repo_project,
-            MAIL=address_mail
-        )
+    write_file(
+        os.path.join(FULL_PATH_TO_PROJECT, 'main.py'),
+        os.path.join(prog_path, 'files', 'main'),
+        {
+            'REPO_PROJECT': REPO_PROJECT, 'VERSION_PROJECT': VERSION_PROJECT,
+            'name_project': NAME_PROJECT.lower(), 'NAME_PROJECT': NAME_PROJECT
+        }
     )
-
     Logger.info('Создание файла README.md ...')
-    open('{}/README.md'.format(full_path_to_project), 'w', encoding='utf-8').write('')
-
-    data = {
-        '{}/program.py'.format(full_path_to_project):
-            'Создание файла программного кода program.py ...',
-        '{}/data/settings/general.json'.format(full_path_to_project):
-            'Создание файла настроек general.json ...'
-    }
-    for file in data.keys():
-        Logger.info(data[file])
-        open(file, 'w', encoding='utf-8').write(open('{}/data/files/{}'.format(
-            prog_path, os.path.splitext(os.path.split(file)[1])[0]), encoding='utf-8').read())
-
-    Logger.info('Копирование файлов проекта ...')
-    for directory in ['{}/libs', '{}/data/images', '{}/data/themes']:
-        shutil.copytree(directory.format(prog_path),
-                        directory.format(full_path_to_project))
-
-    Logger.info('Создание файлов лицензии ...')
-    os.mkdir(dir_license)
-    for file_license in ['license_english.rst', 'license_russian.rst']:
-        open('{}/license/{}'.format(
-            full_path_to_project, file_license),'w', encoding='utf-8').write(
-            open('{}/data/files/{}'.format(
-                prog_path, file_license), encoding='utf-8').read().format(COPYRIGHT=name_autor))
-    shutil.copy(
-        '{}/data/files/open-source-logo.png'.format(prog_path),
-        '{}/open-source-logo.png'.format(dir_license)
+    open(os.path.join(FULL_PATH_TO_PROJECT, 'README.md'), 'w').write('')
+    Logger.info('Создание файла программного кода program.py ...')
+    write_file(
+        os.path.join(FULL_PATH_TO_PROJECT, '%s.py' % NAME_PROJECT.lower()),
+        os.path.join(prog_path, 'files',  'program'),
+         {
+             'NAME_PROJECT': NAME_PROJECT,
+             'NAME_AUTHOR': NAME_AUTHOR, 'REPO_PROJECT': REPO_PROJECT,
+             'name_project': NAME_PROJECT.lower()
+         }
+     )
+    Logger.info('Создание Makefile для компиляции файлов языковых локализаций...')
+    write_file(
+        os.path.join(FULL_PATH_TO_PROJECT, 'Makefile'),
+        os.path.join(prog_path, 'files', 'Makefile'),
+        {'NAME_PROJECT': NAME_PROJECT}
     )
-    Logger.info('Создание файла README.rst для плагина button ...')
-    open('{}/libs/plugins/button/README.rst'.format(full_path_to_project),
-         'w', encoding='utf-8').write(
-        open('{}/data/files/README.rst'.format(prog_path), encoding='utf-8').read()
+    Logger.info('Создание файла лицензии ...')
+    write_file(
+        os.path.join(FULL_PATH_TO_PROJECT, 'LICENSE'), os.path.join(prog_path, 'files', 'LICENSE'),
+        {'COPYRIGHT_PROJECT': COPYRIGHT_PROJECT}
+    )
+
+    Logger.info('Copying files project...')
+    copy_files(os.path.join(prog_path, 'libs'))
+    copy_files(os.path.join(prog_path, 'data'))
+    Logger.info('Создание файла navdrawer.kv ...')
+    write_file(
+        os.path.join(FULL_PATH_TO_PROJECT, 'libs', 'uix', 'kv', 'navdrawer.kv'), os.path.join(prog_path, 'files', 'navdrawer'),
+        {'VERSION_PROJECT': VERSION_PROJECT}
     )
 except FileNotFoundError as exc:
-    Logger.error('Не могу найти файл проекта - {}'.format(exc))
-    shutil.rmtree(full_path_to_project)
+    Logger.error('Не могу найти файл проекта - ' + str(exc))
+    shutil.rmtree(FULL_PATH_TO_PROJECT)
     sys.exit(0)
 except Exception as exc:
-    Logger.error('Неизвестная ошибка - {}'.format(exc))
-    shutil.rmtree(full_path_to_project)
+    Logger.error('Неизвестная ошибка - \n' + traceback.format_exc())
+    shutil.rmtree(FULL_PATH_TO_PROJECT)
     sys.exit(0)
 
-Logger.info('')
-Logger.info('Проект {} успешно создан!'.format(name_project))
+Logger.info(f'Проект {NAME_PROJECT} успешно создан!')

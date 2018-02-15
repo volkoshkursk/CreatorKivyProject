@@ -1,8 +1,8 @@
-Plugin-Desc: Добавляет кнопку в ActionBar
+Plugin-Desc: Add button in ActionBar
 App-Version-Max: 0.0.1
 Plugin-Name: New Button
 Plugin-Version: 0.0.1
-Plugin-Mail: gorodage@gmail.com
+Plugin-Mail: kivydevelopment@gmail.com
 Plugin-Package: button
-Plugin-Author: Ivanov Yuri
+Plugin-Author: kivydevelopment@gmail.com
 App-Version-Min: 0.0.1
