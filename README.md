@@ -4,6 +4,8 @@ CreatorKivyProject
 Мастер создания нового проекта для приложений, написанных с 
 использованием фреймворка Kivy.
 
+Внимание: сгенерированный мастером проект не тестировался на десктопных системах.
+
 [![Build Status](https://travis-ci.org/HeaTTheatR/CreatorKivyProject.svg?branch=master)](https://travis-ci.org/HeaTTheatR/CreatorKivyProject)
 
 ЯЗЫК ПРОГРАММИРОВАНИЯ
