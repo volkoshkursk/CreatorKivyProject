@@ -13,6 +13,7 @@ install:
     sudo apt-get install python-setuptools build-essential libgl1-mesa-dev libgles2-mesa-dev;
     sudo apt-get install xvfb pulseaudio;
     pip install --upgrade Cython==0.25.2 pillow nose coveralls;
+    pip install kivy;
 
 before_script:
     export DISPLAY=:99.0;
