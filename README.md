@@ -4,6 +4,8 @@ CreatorKivyProject
 Мастер создания нового проекта для приложений, написанных с 
 использованием фреймворка Kivy.
 
+[![Build Status](https://travis-ci.org/HeaTTheatR/CreatorKivyProject.svg?branch=master)](https://travis-ci.org/HeaTTheatR/CreatorKivyProject)
+
 ЯЗЫК ПРОГРАММИРОВАНИЯ
 ---------------------
 Python 3.6
@@ -12,13 +14,9 @@ Python 3.6
 -----------
 Фреймворк [Kivy](http://kivy.org)
 
-Библиотека [KivyMD](https://gitlab.com/kivymd/KivyMD)
-
 УСТАНОВКА
 ---------
 Скачайте и распакуйте архив в любую удобную директорию.
-
-![ScreenShot](https://raw.githubusercontent.com/HeaTTheatR/CreatorKivyProject/master/screenshot.png)
 
 СОЗДАНИЕ ПРОЕКТА
 ----------------
