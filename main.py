@@ -126,6 +126,7 @@ try:
     Logger.info('Copying files project...')
     copy_files(os.path.join(prog_path, 'libs'))
     copy_files(os.path.join(prog_path, 'data'))
+    copy_files(os.path.join(prog_path, 'test'))
     Logger.info('Создание файла navdrawer.kv ...')
     write_file(
         os.path.join(FULL_PATH_TO_PROJECT, 'libs', 'uix', 'kv', 'navdrawer.kv'), os.path.join(prog_path, 'files', 'navdrawer'),
