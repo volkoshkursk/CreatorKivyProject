@@ -11,6 +11,6 @@ class AppTest(unittest.TestCase):
 
     def test_creator_app(self):
         sys.path.insert(0, os.path.split(os.path.abspath(sys.argv[0]))[0])
-        from test import Test
-        test = Test()
+        from testprogram import Testprogram
+        test = Testprogram()
         test.run()

@@ -22,6 +22,5 @@ before_script:
     mkdir -p ~/.config;
 
 script:
-    python main.py Test 1.0.0 copyright ./ -repo http://github.com/Author/Project -author AuthorName -mail kivydevelopment@gmail.com -site http://project_site;
-    cd ./Test;
+    python main.py Testprogram 1.0.0 copyright ./ -repo http://github.com/Author/Project -author AuthorName -mail kivydevelopment@gmail.com -site http://project_site;
     python -m unittest test/test_app.py;
