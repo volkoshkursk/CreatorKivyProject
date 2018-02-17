@@ -6,6 +6,8 @@ import os
 import sys
 import unittest
 
+from kivy.properties import partial
+
 
 class AppTest(unittest.TestCase):
 
@@ -13,4 +15,5 @@ class AppTest(unittest.TestCase):
         sys.path.insert(0, os.path.split(os.path.abspath(sys.argv[0]))[0])
         from testprogram import Testprogram
         test = Testprogram()
+        test.bind(started=partial(test.stop))
         test.run()
