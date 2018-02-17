@@ -13,7 +13,6 @@
 import os
 import sys
 from ast import literal_eval
-from datetime import datetime
 
 from kivy.app import App
 from kivy.uix.modalview import ModalView
@@ -207,14 +206,3 @@ class NAME_PROJECT(App):
         toast(self.translation._('Press Back to Exit'))
     def on_lang(self, instance, lang):
         self.translation.switch_lang(lang)
-
-    def on_start(self):
-        '''Вызывается при открытии стартового экрана приложения.'''
-
-        # Оставляем логи только текущего дня.
-        date = datetime.today()
-        name_log_file = 'kivy_%s' % (date.strftime('%y-%m-%d'))
-
-        for log_file in os.listdir('%s/.kivy/logs' % self.directory):
-            if not log_file.startswith(name_log_file):
-                os.remove('%s/.kivy/logs/%s' % (self.directory, log_file))
