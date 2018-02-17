@@ -10,7 +10,7 @@ import unittest
 class AppTest(unittest.TestCase):
 
     def test_creator_app(self):
-        print(os.path.split(os.path.abspath(sys.argv[0]))[0])
+        sys.path.insert(0, os.path.split(os.path.abspath(sys.argv[0]))[0])
         from test import Test
         test = Test()
         test.run()
