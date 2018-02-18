@@ -63,6 +63,9 @@ class NAME_PROJECT(App):
             open(
                 os.path.join(self.directory, 'data', 'locales', 'locales.txt')).read()
         )
+        self.translation = Translation(
+            self.lang, 'Ttest', os.path.join(self.directory, 'data', 'locales')
+        )
 
     def get_application_config(self):
         return super(NAME_PROJECT, self).get_application_config(
@@ -78,13 +81,11 @@ class NAME_PROJECT(App):
         '''Устанавливает значения переменных из файла настроек name_project.ini.'''
 
         self.config.read(os.path.join(self.directory, 'name_project.ini'))
-        self.language = self.config.get('General', 'language')
+        self.lang = self.config.get('General', 'language')
 
     def build(self):
         self.set_value_from_config()
-        self.translation = Translation(
-            self.language, 'Ttest', '%s/data/locales' % self.directory)
-        self.load_all_kv_files(self.directory + '/libs/uix/kv')
+        self.load_all_kv_files(os.path.join(self.directory, 'libs', 'uix', 'kv'))
         self.screen = StartScreen()  # главный экран программы
         self.manager = self.screen.ids.manager
         self.nav_drawer = self.screen.ids.nav_drawer
