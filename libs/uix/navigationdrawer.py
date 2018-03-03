@@ -41,8 +41,9 @@ Builder.load_string("""
             pos: 0, 0
 
     BoxLayout:
-        size_hint_y: 'None'
+        size_hint_y: None
         orientation: 'vertical'
+        height: self.minimum_height
 """)
 
 
