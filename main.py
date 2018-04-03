@@ -75,18 +75,24 @@ ADDRESS_MAIL = parser.parse_args().mail
 FULL_PATH_TO_PROJECT = os.path.join(DIR_PROJECT, NAME_PROJECT)
 
 if os.path.exists(FULL_PATH_TO_PROJECT):
-    Logger.error(f'Проект {NAME_PROJECT} уже существует!')
+    Logger.error('Проект {} уже существует!'.format(NAME_PROJECT))
     sys.exit(0)
 
 try:
     os.makedirs(FULL_PATH_TO_PROJECT)
-    Logger.info(f'Создана директория проекта {FULL_PATH_TO_PROJECT} ...')
+    Logger.info(
+        'Создана директория проекта {} ...'.format(FULL_PATH_TO_PROJECT)
+    )
 except FileNotFoundError:
-    Logger.error(f'Указанная директория {DIR_PROJECT} не существует!')
+    Logger.error(
+        'Указанная директория {} не существует!'.format(DIR_PROJECT)
+    )
 except Exception:
     print(traceback.format_exc())
     Logger.error(
-        f'У вас нет прав для создания проекта в директории {DIR_PROJECT}!'
+        'У вас нет прав для создания проекта в директории {}!'.format(
+            DIR_PROJECT
+        )
     )
 
 try:
@@ -111,7 +117,9 @@ try:
              'name_project': NAME_PROJECT.lower()
          }
      )
-    Logger.info('Создание Makefile для компиляции файлов языковых локализаций...')
+    Logger.info(
+        'Создание Makefile для компиляции файлов языковых локализаций...'
+    )
     write_file(
         os.path.join(FULL_PATH_TO_PROJECT, 'Makefile'),
         os.path.join(prog_path, 'files', 'Makefile'),
@@ -119,7 +127,9 @@ try:
     )
     Logger.info('Создание файла лицензии ...')
     write_file(
-        os.path.join(FULL_PATH_TO_PROJECT, 'LICENSE'), os.path.join(prog_path, 'files', 'LICENSE'),
+        os.path.join(
+            FULL_PATH_TO_PROJECT, 'LICENSE'),
+            os.path.join(prog_path, 'files', 'LICENSE'),
         {'COPYRIGHT_PROJECT': COPYRIGHT_PROJECT}
     )
 
@@ -129,7 +139,9 @@ try:
     copy_files(os.path.join(prog_path, 'test'))
     Logger.info('Создание файла navdrawer.kv ...')
     write_file(
-        os.path.join(FULL_PATH_TO_PROJECT, 'libs', 'uix', 'kv', 'navdrawer.kv'), os.path.join(prog_path, 'files', 'navdrawer'),
+        os.path.join(
+            FULL_PATH_TO_PROJECT, 'libs', 'uix', 'kv', 'navdrawer.kv'),
+            os.path.join(prog_path, 'files', 'navdrawer'),
         {'VERSION_PROJECT': VERSION_PROJECT}
     )
 except FileNotFoundError as exc:
@@ -141,4 +153,4 @@ except Exception as exc:
     shutil.rmtree(FULL_PATH_TO_PROJECT)
     sys.exit(0)
 
-Logger.info(f'Проект {NAME_PROJECT} успешно создан!')
+Logger.info('Проект {} успешно создан!'.format(NAME_PROJECT))
