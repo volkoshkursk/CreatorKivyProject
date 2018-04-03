@@ -25,7 +25,7 @@ CREATING A PROJECT
 Run the main.py script in the console: 
 
 ```python
-python main.py name_project version_project your_copyright path_to_project -repo repo_project_on_github -autor name_autor -mail mail_autor -site site_project
+python main.py name_project version_project your_copyright path_to_project -repo repo_project_on_github -author name_autor -mail mail_autor -site site_project
 ```
 
 COMMAND LINE ARGUMENTS
