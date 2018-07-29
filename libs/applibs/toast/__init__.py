@@ -1,4 +1,6 @@
-''' 
+# -*- coding: utf-8 -*-
+
+'''
 Разработано специально для проекта VKGroups -
 https://github.com/HeaTTheatR/VKGroups
 
