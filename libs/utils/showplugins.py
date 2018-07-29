@@ -17,6 +17,8 @@ Copyright © 2017 HeaTTheatR
 import os
 from ast import literal_eval
 
+from kivy.logger import PY2
+
 from libs.uix.lists import Lists
 from dialogs import card, dialog
 
@@ -70,11 +72,17 @@ class ShowPlugins(object):
         {'Name item': ['Desc item', 'icon_item.png'], ...}.'''
 
         dict_info_plugins = {}
-        self._list_activate_plugins = literal_eval(
-            open(os.path.join(
-                self._app.directory, 'libs', 'plugins', 'plugins_list.list'),
-                encoding='utf-8').read()
-        )
+        if not PY2:
+            self._list_activate_plugins = literal_eval(
+                open(os.path.join(
+                    self._app.directory, 'libs', 'plugins', 'plugins_list.list'),
+                    encoding='utf-8').read()
+            )
+        else:
+            self._list_activate_plugins = literal_eval(
+                open(os.path.join(
+                    self._app.directory, 'libs', 'plugins', 'plugins_list.list')).read()
+            )
 
         for plugin in os.listdir(
                 os.path.join(self._app.directory, 'libs', 'plugins')):
