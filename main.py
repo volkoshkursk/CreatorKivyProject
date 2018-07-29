@@ -3,12 +3,16 @@
 import os
 import sys
 
-import shutil
 import argparse
 import traceback
 import shutil
 
 from kivy.logger import Logger
+from kivy.logger import PY2
+
+
+if PY2:
+    FileNotFoundError = IOError
 
 
 def write_file(in_file, out_file, values=False):
@@ -18,9 +22,15 @@ def write_file(in_file, out_file, values=False):
             if not values[key]:
                 continue
             string_file = string_file.replace(key, values[key])
-        open(in_file, 'w', encoding='utf-8').write(string_file)
+        if PY2:
+            open(in_file, 'w').write(string_file)
+        else:
+            open(in_file, 'w', encoding='utf-8').write(string_file)
     else:
-        open(in_file, 'w', encoding='utf-8').write(string_file)
+        if PY2:
+            open(in_file, 'w').write(string_file)
+        else:
+            open(in_file, 'w', encoding='utf-8').write(string_file)
 
 
 def copy_files(directory):
