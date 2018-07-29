@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
@@ -96,7 +98,7 @@ def main():
                 txt = six.moves.urllib.parse.quote(
                     report.txt_traceback.text.encode('utf-8')
                 )
-                url = f'https://github.com/{NICK_NAME_AND_NAME_REPOSITORY}/issues/new?body=' + txt
+                url = 'https://github.com/%s/issues/new?body=' % NICK_NAME_AND_NAME_REPOSITORY + txt
                 webbrowser.open(url)
             except Exception:
                 sys.exit(1)
