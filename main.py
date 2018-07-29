@@ -28,7 +28,8 @@ def copy_files(directory):
         print(FULL_PATH_TO_PROJECT + directory_created)
         os.mkdir(FULL_PATH_TO_PROJECT + directory_created)
         for file in files:
-            file_created = FULL_PATH_TO_PROJECT + os.path.join(directory_created, file)
+            file_created = \
+                FULL_PATH_TO_PROJECT + os.path.join(directory_created, file)
             print('        ' + file_created)
             shutil.copyfile(os.path.join(directory, file), file_created)
         print()
@@ -45,7 +46,7 @@ if len(sys.argv) <= 1:
 'version' - Версия проекта
 'path' - Директория проекта
 'repo' - Адрес репозитория на GitHub (необязательный параметр)
-'autor' - Имя автора проекта (необязательный параметр)
+'author' - Имя автора проекта (необязательный параметр)
 'mail' - Почта автора проекта (необязательный параметр)
 'site' - Сайт проекта (необязательный параметр)
 ''')
@@ -81,19 +82,15 @@ if os.path.exists(FULL_PATH_TO_PROJECT):
 try:
     os.makedirs(FULL_PATH_TO_PROJECT)
     Logger.info(
-        'Создана директория проекта {} ...'.format(FULL_PATH_TO_PROJECT)
-    )
+        'Создана директория проекта {} ...'.format(FULL_PATH_TO_PROJECT))
 except FileNotFoundError:
     Logger.error(
-        'Указанная директория {} не существует!'.format(DIR_PROJECT)
-    )
+        'Указанная директория {} не существует!'.format(DIR_PROJECT))
 except Exception:
     print(traceback.format_exc())
     Logger.error(
         'У вас нет прав для создания проекта в директории {}!'.format(
-            DIR_PROJECT
-        )
-    )
+            DIR_PROJECT))
 
 try:
     Logger.info('Создание точки входа main.py ...')
