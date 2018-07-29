@@ -101,7 +101,7 @@ class NAME_PROJECT(App):
                     with open(kv_file, encoding='utf-8') as kv:
                         Builder.load_string(kv.read())
                 else:
-                    Builder.load_file(kv)
+                    Builder.load_file(kv_file)
 
     def events_program(self, instance, keyboard, keycode, text, modifiers):
         '''Вызывается при нажатии кнопки Меню или Back Key
