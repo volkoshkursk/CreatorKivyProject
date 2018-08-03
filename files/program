@@ -45,7 +45,7 @@ class NAME_PROJECT(App):
     icon = 'icon.png'
     nav_drawer = ObjectProperty()
     theme_cls = ThemeManager()
-    theme_cls.primary_palette = 'Grey'
+    theme_cls.primary_palette = 'Blue'
     lang = StringProperty('en')
 
     def __init__(self, **kvargs):
