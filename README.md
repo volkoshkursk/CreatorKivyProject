@@ -1,8 +1,9 @@
 CreatorKivyProject
 ==================
 
-<img src="https://raw.githubusercontent.com/HeaTTheatR/CreatorKivyProject/master/previous.jpg" 
-align="center"/>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/HeaTTheatR/KivyAnimatedButtons/master/previous.jpg">
+</p>
 
 The wizard for creating a new project for applications written using the Kivy framework.
 
