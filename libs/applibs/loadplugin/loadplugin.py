@@ -64,6 +64,8 @@ import sys
 import traceback
 import ast
 
+from kivy.logger import PY2
+
 from . manifest import Manifest
 
 
@@ -115,7 +117,13 @@ def load_plugin(app, string_version):
 
             # Запускаем плагин, если он присутствует в списке активированых.
             if name in plugin_list:
-                exec(open(os.path.join(path, '__init__.py'), encoding='utf-8').read(),
-                     {'app': app, 'path': path})
+                if not PY2:
+                    # FIXME: избавится от инструкции exec.
+                    exec(open(os.path.join(path, '__init__.py'),
+                              encoding='utf-8').read(),
+                         {'app': app, 'path': path})
+                else:
+                    exec(open(os.path.join(path, '__init__.py')).read(),
+                         {'app': app, 'path': path})
         except Exception:
             raise Exception(traceback.format_exc())
