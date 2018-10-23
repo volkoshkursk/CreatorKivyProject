@@ -19,6 +19,7 @@ install:
     git clone https://github.com/HeaTTheatR/KivyMD.git;
     cd KivyMD;
     sudo python setup.py install;
+    ls;
 
 before_script:
     export DISPLAY=:99.0;
