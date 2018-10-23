@@ -21,13 +21,13 @@ install:
     sudo python setup.py install;
 
 before_script:
+    ls
     export DISPLAY=:99.0;
     /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1280x720x24 -ac +extension GLX;
     export PYTHONPATH=$PYTHONPATH:$(pwd);
     mkdir -p ~/.config;
 
 script:
-    ls
     python main.py Testprogram 1.0.0 copyright ./ -repo http://github.com/Author/Project -author AuthorName -mail kivydevelopment@gmail.com -site http://project_site;
     cd ./Testprogram;
     python -m unittest test/test_app.py;
