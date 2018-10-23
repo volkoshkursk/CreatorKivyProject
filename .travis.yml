@@ -1,7 +1,7 @@
 language: python
 
 python:
-  - 2.7
+  - 3.6
 
 install:
     yes | sudo add-apt-repository ppa:zoogie/sdl2-snapshots;
@@ -19,6 +19,7 @@ install:
     git clone https://github.com/HeaTTheatR/KivyMD.git;
     cd KivyMD;
     sudo python setup.py install;
+    python -c "import kivy";
     git clone https://github.com/HeaTTheatR/CreatorKivyProject.git;
     cd CreatorKivyProject;
 
