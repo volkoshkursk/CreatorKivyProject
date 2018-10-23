@@ -7,6 +7,5 @@ install:
     yes | sudo add-apt-repository ppa:zoogie/sdl2-snapshots;
     yes | sudo add-apt-repository ppa:gstreamer-developers/ppa;
     sudo apt-get update;
-    sudo apt-get install git;
-    sudo pip3 install python3-git;
     sudo apt-get install python3-pip;
+    sudo pip3 install python3-git;
