@@ -7,8 +7,6 @@ CreatorKivyProject
 
 The wizard for creating a new project for applications written using the Kivy framework.
 
-[![Build Status](https://travis-ci.org/HeaTTheatR/CreatorKivyProject.svg?branch=master)](https://travis-ci.org/HeaTTheatR/CreatorKivyProject)
-
 LANGUAGE
 --------
 Python 2.7-3.6
