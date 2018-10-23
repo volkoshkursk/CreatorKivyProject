@@ -18,7 +18,7 @@ install:
     pip install kivy;
     pip install git+https://github.com/HeaTTheatR/KivyMD.git
     git clone https://github.com/HeaTTheatR/CreatorKivyProject.git;
-    cd CreatorKivyProject
+    cd CreatorKivyProject;
 
 before_script:
     export DISPLAY=:99.0;
