@@ -16,7 +16,7 @@ install:
     sudo apt-get install xvfb pulseaudio;
     pip install --upgrade Cython==0.25.2 pillow nose coveralls;
     pip install kivy;
-    pip install git+https://github.com/HeaTTheatR/KivyMD.git
+    pip install git+https://github.com/HeaTTheatR/KivyMD.git;
     git clone https://github.com/HeaTTheatR/CreatorKivyProject.git;
     cd CreatorKivyProject;
 
