@@ -21,7 +21,6 @@ install:
     sudo python setup.py install;
     git clone https://github.com/HeaTTheatR/CreatorKivyProject.git;
     cd CreatorKivyProject;
-    ls;
 
 before_script:
     export DISPLAY=:99.0;
@@ -30,4 +29,6 @@ before_script:
     mkdir -p ~/.config;
 
 script:
-    python main.py;
+    python main.py Testprogram 1.0.0 copyright ./ -repo http://github.com/Author/Project -author AuthorName -mail kivydevelopment@gmail.com -site http://project_site;
+    cd ./Testprogram;
+    python -m unittest test/test_app.py;
