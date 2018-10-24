@@ -1,18 +1,3 @@
-# -*- coding: utf-8 -*-
-
-'''
-VKGroups
-
-Copyright © 2016  Easy
-
-Для предложений и вопросов:
-<kivydevelopment@gmail.com>
-
-Данный файл распространяется по условиям той же лицензии,
-что и фреймворк Kivy.
-
-'''
-
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 from kivy.properties import ListProperty
@@ -47,8 +32,8 @@ Builder.load_string("""
 """)
 
 
-class ModifiedNavigationDrawer(BoxLayout, ThemableBehavior, RectangularElevationBehavior):
-
+class ModifiedNavigationDrawer(BoxLayout, ThemableBehavior,
+                               RectangularElevationBehavior):
     orientation = 'vertical'
     shadow_color = ListProperty([0, 0, 0, 0])
 
