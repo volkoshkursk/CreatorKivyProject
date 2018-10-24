@@ -33,14 +33,12 @@ from libs.utils.showplugins import ShowPlugins
 
 from kivymd.theming import ThemeManager
 from kivymd.label import MDLabel
+from kivymd.toast import toast
 
-from toast import toast
 from dialogs import card
 
 
 class NAME_PROJECT(App):
-    '''Функционал программы.'''
-
     title = 'NAME_PROJECT'
     icon = 'icon.png'
     nav_drawer = ObjectProperty()
