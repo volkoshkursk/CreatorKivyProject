@@ -47,20 +47,20 @@ def copy_files(directory):
         print()
 
 
-__version__ = '2.2.2'
+__version__ = '2.3.0'
 Logger.info('Creator Kivy Project version: ' + __version__)
 
 if len(sys.argv) <= 1:
     Logger.warning('''
-Используйте скрипт со строковыми аргументами:
+Use a script with string arguments:
 
-'name' - Имя проекта
-'version' - Версия проекта
-'path' - Директория проекта
-'repo' - Адрес репозитория на GitHub (необязательный параметр)
-'author' - Имя автора проекта (необязательный параметр)
-'mail' - Почта автора проекта (необязательный параметр)
-'site' - Сайт проекта (необязательный параметр)
+'name' - project name
+'version' - project version
+'path' - project directory
+'repo' - address of the repository on GitHub (optional)
+'author' - name of the author of the project (optional)
+'mail' - mail of the author of the project (optional)
+'site' - project site (optional)
 ''')
     sys.exit(0)
 
@@ -68,14 +68,17 @@ prog_path = os.path.split(os.path.abspath(sys.argv[0]))[0]
 sys.dont_write_bytecode = True
 
 parser = argparse.ArgumentParser()
-parser.add_argument('name', type=str, help='Имя проекта')
-parser.add_argument('version', type=str, help='Версия проекта')
-parser.add_argument('copyright', type=str, help='Копирайт')
-parser.add_argument('path', type=str, help='Директория проекта')
-parser.add_argument('-repo', type=str, help='Адрес репозитория на GitHub')
-parser.add_argument('-author', type=str, help='Имя автора проекта')
-parser.add_argument('-mail', type=str, help='Почта автора проекта')
-parser.add_argument('-site', type=str, help='Сайт проекта')
+parser.add_argument('name', type=str, help='Project name')
+parser.add_argument('version', type=str, help='Project version')
+parser.add_argument('copyright', type=str, help='Copyright')
+parser.add_argument('path', type=str, help='Project directory')
+parser.add_argument('-repo', type=str,
+                    help='Address of the repository on GitHub')
+parser.add_argument('-author', type=str,
+                    help='Name of the author of the project')
+parser.add_argument('-mail', type=str,
+                    help='Mail of the author of the project')
+parser.add_argument('-site', type=str, help='Project site')
 
 SITE_PROJECT = parser.parse_args().site
 VERSION_PROJECT = parser.parse_args().version
@@ -88,24 +91,24 @@ ADDRESS_MAIL = parser.parse_args().mail
 FULL_PATH_TO_PROJECT = os.path.join(DIR_PROJECT, NAME_PROJECT)
 
 if os.path.exists(FULL_PATH_TO_PROJECT):
-    Logger.error('Проект {} уже существует!'.format(NAME_PROJECT))
+    Logger.error('Project {} already exists!'.format(NAME_PROJECT))
     sys.exit(0)
 
 try:
     os.makedirs(FULL_PATH_TO_PROJECT)
     Logger.info(
-        'Создана директория проекта {} ...'.format(FULL_PATH_TO_PROJECT))
+        'Created project directory {} ...'.format(FULL_PATH_TO_PROJECT))
 except FileNotFoundError:
     Logger.error(
-        'Указанная директория {} не существует!'.format(DIR_PROJECT))
+        'The specified {} directory does not exist!'.format(DIR_PROJECT))
 except Exception:
     print(traceback.format_exc())
     Logger.error(
-        'У вас нет прав для создания проекта в директории {}!'.format(
-            DIR_PROJECT))
+        'You are not authorized to create a project in '
+        '{} directory!'.format(DIR_PROJECT))
 
 try:
-    Logger.info('Создание точки входа main.py ...')
+    Logger.info('Create entry point main.py ...')
     write_file(
         os.path.join(FULL_PATH_TO_PROJECT, 'main.py'),
         os.path.join(prog_path, 'files', 'main'),
@@ -114,9 +117,9 @@ try:
             'name_project': NAME_PROJECT.lower(), 'NAME_PROJECT': NAME_PROJECT
         }
     )
-    Logger.info('Создание файла README.md ...')
+    Logger.info('Create file README.md ...')
     open(os.path.join(FULL_PATH_TO_PROJECT, 'README.md'), 'w').write('')
-    Logger.info('Создание файла программного кода program.py ...')
+    Logger.info('Creating a code file program.py ...')
     write_file(
         os.path.join(FULL_PATH_TO_PROJECT, '%s.py' % NAME_PROJECT.lower()),
         os.path.join(prog_path, 'files',  'program'),
@@ -127,14 +130,14 @@ try:
          }
      )
     Logger.info(
-        'Создание Makefile для компиляции файлов языковых локализаций...'
+        'Creating a Makefile to compile language localization files ...'
     )
     write_file(
         os.path.join(FULL_PATH_TO_PROJECT, 'Makefile'),
         os.path.join(prog_path, 'files', 'Makefile'),
         {'NAME_PROJECT': NAME_PROJECT}
     )
-    Logger.info('Создание файла лицензии ...')
+    Logger.info('Creating a license file ...')
     write_file(
         os.path.join(
             FULL_PATH_TO_PROJECT, 'LICENSE'),
@@ -146,7 +149,7 @@ try:
     copy_files(os.path.join(prog_path, 'libs'))
     copy_files(os.path.join(prog_path, 'data'))
     copy_files(os.path.join(prog_path, 'test'))
-    Logger.info('Создание файла navdrawer.kv ...')
+    Logger.info('Create file navdrawer.kv ...')
     write_file(
         os.path.join(
             FULL_PATH_TO_PROJECT, 'libs', 'uix', 'kv', 'navdrawer.kv'),
@@ -154,12 +157,25 @@ try:
         {'VERSION_PROJECT': VERSION_PROJECT}
     )
 except FileNotFoundError as exc:
-    Logger.error('Не могу найти файл проекта - ' + str(exc))
+    Logger.error('I can not find the project file - ' + str(exc))
     shutil.rmtree(FULL_PATH_TO_PROJECT)
     sys.exit(0)
 except Exception as exc:
-    Logger.error('Неизвестная ошибка - \n' + traceback.format_exc())
+    Logger.error('Unknown error - \n' + traceback.format_exc())
     shutil.rmtree(FULL_PATH_TO_PROJECT)
     sys.exit(0)
 
-Logger.info('Проект {} успешно создан!'.format(NAME_PROJECT))
+Logger.info('Installing the KivyMD library ...')
+
+PATH_TO_APPLIBS = os.path.join(FULL_PATH_TO_PROJECT, 'libs', 'applibs')
+PATH_TO_KIVYMD = os.path.join(PATH_TO_APPLIBS, 'KivyMD')
+PATH_TO_KIVYMD_OLD = os.path.join(PATH_TO_APPLIBS, 'KivyMD_old')
+
+os.chdir(PATH_TO_APPLIBS)
+os.system('git clone https://github.com/HeaTTheatR/KivyMD')
+os.rename(PATH_TO_KIVYMD, PATH_TO_KIVYMD_OLD)
+shutil.move(os.path.join(PATH_TO_KIVYMD_OLD, 'kivymd'), PATH_TO_APPLIBS)
+shutil.rmtree(PATH_TO_KIVYMD_OLD)
+
+Logger.info('KivyD library installation completed!')
+Logger.info('Project {} successfully created!'.format(NAME_PROJECT))
