@@ -13,7 +13,6 @@
 from kivy.properties import ObjectProperty
 
 from kivymd.navigationdrawer import NavigationLayout
-from toast import toast
 
 
 class NavDrawer(NavigationLayout):
@@ -23,9 +22,6 @@ class NavDrawer(NavigationLayout):
         self.toggle_nav_drawer()
 
     def add_name_previous_screen(self):
-        '''Добавляет в список имя текущего экрана
-        для установки предыдущего при нажатии кнопки Back key.'''
-
         name_current_screen = self._app.manager.current
         if self.state == 'open':
             try:
