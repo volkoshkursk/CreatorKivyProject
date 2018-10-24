@@ -80,11 +80,6 @@
                     events_callback: lambda x: x
 
                 SingleIconItem:
-                    icon: 'puzzle'
-                    text: app.translation._('Плагины')
-                    events_callback: app.show_plugins
-
-                SingleIconItem:
                     icon: 'web'
                     text: app.translation._('Язык')
                     events_callback: app.select_locale
