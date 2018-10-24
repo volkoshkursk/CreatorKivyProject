@@ -10,15 +10,13 @@
 # 
 # LICENSE: MIT
 
-# Точка входа в приложение. Запускает основной программный код program.py.
-# В случае ошибки, выводит на экран окно с её текстом.
+# Entry point to the application. Runs the main program.py program code.
+# In case of error, displays a window with its text.
 
 import os
 import sys
 import traceback
 
-# Никнейм и имя репозитория на github,
-# куда будет отправлен отчёт баг репорта.
 NICK_NAME_AND_NAME_REPOSITORY = 'REPO_PROJECT'
 
 directory = os.path.split(os.path.abspath(sys.argv[0]))[0]
@@ -38,13 +36,7 @@ try:
     Config.set('kivy', 'keyboard_mode', 'system')
     Config.set('kivy', 'log_enable', 0)
 
-    from kivy import platform
-    if platform == 'android':
-        from plyer import orientation
-        orientation.set_sensor(mode='any')
-
     from kivymd.theming import ThemeManager
-    # Activity баг репорта.
     from bugreporter import BugReporter
 except Exception:
     traceback.print_exc(file=open(os.path.join(directory, 'error.log'), 'w'))
@@ -71,10 +63,9 @@ def main():
     app = None
 
     try:
-        from loadplugin import load_plugin # функция загрузки плагинов
-        from name_project import NAME_PROJECT  # основной класс программы
+        from loadplugin import load_plugin
+        from name_project import NAME_PROJECT
 
-        # Запуск приложения.
         app = NAME_PROJECT()
         load_plugin(app, __version__)
         app.run()
