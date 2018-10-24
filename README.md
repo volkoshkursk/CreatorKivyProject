@@ -15,7 +15,7 @@ REQUIREMENTS
 ------------
 Framework [Kivy](http://kivy.org)
 
-Package [KivyMD](https://github.com/HeaTTheatR/KivyMD)
+git
 
 INSTALLING
 ---------
@@ -49,7 +49,7 @@ COMMAND LINE ARGUMENTS
 
 VERSION
 -------
-Version 2.2.2
+Version 2.3.0
 
 CONTACTS
 --------
