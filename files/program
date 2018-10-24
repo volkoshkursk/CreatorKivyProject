@@ -29,7 +29,6 @@ from main import __version__
 from libs.translation import Translation
 from libs.uix.baseclass.startscreen import StartScreen
 from libs.uix.lists import Lists
-from libs.utils.showplugins import ShowPlugins
 
 from kivymd.theming import ThemeManager
 from kivymd.label import MDLabel
@@ -53,7 +52,6 @@ class NAME_PROJECT(App):
 
         self.list_previous_screens = ['base']
         self.window = Window
-        self.plugin = ShowPlugins(self)
         self.config = ConfigParser()
         self.manager = None
         self.window_language = None
@@ -130,11 +128,6 @@ class NAME_PROJECT(App):
             self.screen.ids.action_bar.title = self.title
             self.screen.ids.action_bar.left_action_items = \
                 [['menu', lambda x: self.nav_drawer._toggle()]]
-
-    def show_plugins(self, *args):
-        '''Выводит на экран список плагинов.'''
-
-        self.plugin.show_plugins()
 
     def show_about(self, *args):
         self.nav_drawer.toggle_nav_drawer()
