@@ -63,11 +63,9 @@ def main():
     app = None
 
     try:
-        from loadplugin import load_plugin
         from name_project import NAME_PROJECT
 
         app = NAME_PROJECT()
-        load_plugin(app, __version__)
         app.run()
     except Exception:
         from kivy.app import App
