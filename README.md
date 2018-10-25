@@ -17,6 +17,10 @@ Framework [Kivy](http://kivy.org)
 
 git
 
+pip
+
+pip3
+
 INSTALLING
 ---------
 Download and unpack the archive into any convenient directory.
