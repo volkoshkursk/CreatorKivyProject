@@ -173,9 +173,17 @@ PATH_TO_KIVYMD_OLD = os.path.join(PATH_TO_APPLIBS, 'KivyMD_old')
 
 os.chdir(PATH_TO_APPLIBS)
 os.system('git clone https://github.com/HeaTTheatR/KivyMD')
-os.rename(PATH_TO_KIVYMD, PATH_TO_KIVYMD_OLD)
-shutil.move(os.path.join(PATH_TO_KIVYMD_OLD, 'kivymd'), PATH_TO_APPLIBS)
-shutil.rmtree(PATH_TO_KIVYMD_OLD)
 
-Logger.info('KivyD library installation completed!')
-Logger.info('Project {} successfully created!'.format(NAME_PROJECT))
+try:
+    os.rename(PATH_TO_KIVYMD, PATH_TO_KIVYMD_OLD)
+    shutil.move(os.path.join(PATH_TO_KIVYMD_OLD, 'kivymd'), PATH_TO_APPLIBS)
+    Logger.info('Clean KivyMD files ...')
+    shutil.rmtree(PATH_TO_KIVYMD_OLD)
+except OSError:
+    Logger.error('KivyMD library not installed!')
+else:
+    Logger.info('KivyMD library installation completed!')
+    Logger.info('Installing the Pillow library ...')
+    os.system('sudo pip install pillow')
+    os.system('sudo pip3 install pillow')
+    Logger.info('Project {} successfully created!'.format(NAME_PROJECT))
