@@ -18,7 +18,7 @@ from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.uix.modalview import ModalView
 
-from kivymd.card import MDCard, MDSeparator
+from kivymd.cards import MDCard, MDSeparator
 from kivymd.dialog import MDDialog
 from kivymd.label import MDLabel
 from kivymd.button import MDFlatButton
