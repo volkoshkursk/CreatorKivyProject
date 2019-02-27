@@ -161,7 +161,7 @@ class NAME_PROJECT(App):
         self.nav_drawer._toggle()
         self.manager.current = 'license'
         self.screen.ids.action_bar.left_action_items = \
-            [['chevron-left', lambda x: self.back_screen()]]
+            [['chevron-left', lambda x: self.back_screen(27)]]
         self.screen.ids.action_bar.title = \
             self.translation._('MIT LICENSE')
 
