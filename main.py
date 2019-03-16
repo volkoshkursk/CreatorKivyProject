@@ -167,7 +167,8 @@ except Exception as exc:
 
 Logger.info('Installing the KivyMD library ...')
 
-PATH_TO_APPLIBS = os.path.join(FULL_PATH_TO_PROJECT, 'libs', 'applibs')
+PATH_TO_FOLDER = os.path.dirname(os.path.abspath( __file__ ))
+PATH_TO_APPLIBS = os.path.join(PATH_TO_FOLDER, FULL_PATH_TO_PROJECT, 'libs', 'applibs')
 PATH_TO_KIVYMD = os.path.join(PATH_TO_APPLIBS, 'KivyMD')
 PATH_TO_KIVYMD_OLD = os.path.join(PATH_TO_APPLIBS, 'KivyMD_old')
 
