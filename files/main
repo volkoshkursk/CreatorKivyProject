@@ -51,7 +51,7 @@ def main():
     def create_error_monitor():
         class _App(App):
             theme_cls = ThemeManager()
-            theme_cls.primary_palette = 'BlueGrey'
+            theme_cls.primary_palette = 'BlueGray'
 
             def build(self):
                 box = BoxLayout()
