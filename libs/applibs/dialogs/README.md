@@ -33,7 +33,7 @@ except ImportError:
 class Test(App):
     dialog_test = ObjectProperty(None)
     theme_cls = ThemeManager()
-    theme_cls.primary_palette = 'BlueGrey'
+    theme_cls.primary_palette = 'BlueGray'
 
     def build(self):
         box = BoxLayout()

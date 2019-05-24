@@ -2,7 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 from kivy.properties import ListProperty
 
-from kivymd.elevationbehavior import RectangularElevationBehavior
+from kivymd.elevation import RectangularElevationBehavior
 from kivymd.theming import ThemableBehavior
 from kivymd.vendor.navigationdrawer import NavigationDrawer
 
