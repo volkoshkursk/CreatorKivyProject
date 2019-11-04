@@ -3,11 +3,11 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright © 2017 Easy
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
-# 
+#
 # LICENSE: MIT
 
 import os
@@ -31,7 +31,7 @@ from libs.uix.baseclass.startscreen import StartScreen
 from libs.uix.lists import Lists
 
 from kivymd.theming import ThemeManager
-from kivymd.label import MDLabel
+from kivymd.uix.label import MDLabel
 from kivymd.toast import toast
 
 from dialogs import card
@@ -69,21 +69,17 @@ class NAME_PROJECT(App):
                         '{}/%(appname)s.ini'.format(self.directory))
 
     def build_config(self, config):
-        '''Создаёт файл настроек приложения name_project.ini.'''
-
         config.adddefaultsection('General')
         config.setdefault('General', 'language', 'en')
 
     def set_value_from_config(self):
-        '''Устанавливает значения переменных из файла настроек name_project.ini.'''
-
         self.config.read(os.path.join(self.directory, 'name_project.ini'))
         self.lang = self.config.get('General', 'language')
 
     def build(self):
         self.set_value_from_config()
         self.load_all_kv_files(os.path.join(self.directory, 'libs', 'uix', 'kv'))
-        self.screen = StartScreen()  # главный экран программы
+        self.screen = StartScreen()
         self.manager = self.screen.ids.manager
         self.nav_drawer = self.screen.ids.nav_drawer
 
@@ -100,9 +96,6 @@ class NAME_PROJECT(App):
                     Builder.load_file(kv_file)
 
     def events_program(self, instance, keyboard, keycode, text, modifiers):
-        '''Вызывается при нажатии кнопки Меню или Back Key
-        на мобильном устройстве.'''
-
         if keyboard in (1001, 27):
             if self.nav_drawer.state == 'open':
                 self.nav_drawer.toggle_nav_drawer()
@@ -113,10 +106,6 @@ class NAME_PROJECT(App):
         return True
 
     def back_screen(self, event=None):
-        '''Менеджер экранов. Вызывается при нажатии Back Key
-        и шеврона "Назад" в ToolBar.'''
-
-        # Нажата BackKey.
         if event in (1001, 27):
             if self.manager.current == 'base':
                 self.dialog_exit()
@@ -166,12 +155,7 @@ class NAME_PROJECT(App):
             self.translation._('MIT LICENSE')
 
     def select_locale(self, *args):
-        '''Выводит окно со списком имеющихся языковых локализаций для
-        установки языка приложения.'''
-
         def select_locale(name_locale):
-            '''Устанавливает выбранную локализацию.'''
-
             for locale in self.dict_language.keys():
                 if name_locale == self.dict_language[locale]:
                     self.lang = locale
@@ -205,5 +189,6 @@ class NAME_PROJECT(App):
             
         Clock.schedule_interval(check_interval_press, 1)
         toast(self.translation._('Press Back to Exit'))
+
     def on_lang(self, instance, lang):
         self.translation.switch_lang(lang)

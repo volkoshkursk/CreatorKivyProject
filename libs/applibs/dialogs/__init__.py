@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
-
-'''
-VKGroups
-
-Copyright © 2010-2018 HeaTTheatR
-
-Для предложений и вопросов:
-<kivydevelopment@gmail.com>
-
-Данный файл распространяется по условиям той же лицензии,
-что и фреймворк Kivy.
-
-'''
+#
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
 
 from . selection import Selection
 from . dialogs import card, dialog, dialog_progress, input_dialog

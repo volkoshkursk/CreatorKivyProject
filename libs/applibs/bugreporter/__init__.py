@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
-
-''' 
-Разработано специально для проекта VKGroups -
-https://github.com/HeaTTheatR/VKGroups
-
-Copyright © 2016  Easy
-
-Для предложений и вопросов:
-<kivydevelopment@gmail.com>
-
-Данный файл распространяется по услолвиям той же лицензии,
-что и фреймворк Kivy.
-
-'''
+#
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
 
 from . bugreporter import BugReporter
 

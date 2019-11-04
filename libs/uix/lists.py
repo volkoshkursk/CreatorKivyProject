@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
-
-'''
-VKGroups
-
-Copyright © 2016  Easy
-
-Для предложений и вопросов:
-<kivydevelopment@gmail.com>
-
-Данный файл распространяется по условиям той же лицензии,
-что и фреймворк Kivy.
-
-'''
-
-# TODO: добавить документацию.
+#
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
 
 import os
 
@@ -25,10 +20,10 @@ from kivy.properties import (
     ObjectProperty, DictProperty, StringProperty, BooleanProperty, ListProperty
 )
 
-from kivymd.selectioncontrols import MDCheckbox
-from kivymd.ripplebehavior import CircularRippleBehavior
-from kivymd.button import MDIconButton
-from kivymd.list import (
+from kivymd.uix.selectioncontrol import MDCheckbox
+from kivymd.uix.behaviors import CircularRippleBehavior
+from kivymd.uix.button import MDIconButton
+from kivymd.uix.list import (
     ILeftBody, ILeftBodyTouch, IRightBodyTouch, TwoLineAvatarIconListItem,
     OneLineListItem, OneLineIconListItem, ThreeLineAvatarIconListItem,
     OneLineAvatarIconListItem
@@ -76,13 +71,8 @@ class OneSelectCheckItem(OneLineAvatarIconListItem):
 
 class CheckItem(TwoLineAvatarIconListItem):
     events_callback = ObjectProperty()
-    '''Функция обработки сигналов экрана.'''
-
     active = BooleanProperty(False)
-    '''Активный ли чекбокс списка или нет.'''
-
     icon = StringProperty()
-    '''Путь к иконке списка.'''
 
 
 class IconItemThree(ThreeLineAvatarIconListItem):
@@ -116,18 +106,9 @@ class SingleIconItem(OneLineIconListItem):
 
 class Lists(BoxLayout):
     events_callback = ObjectProperty()
-    '''Функция обработки сигналов экрана.'''
-
     dict_items = DictProperty()
-    '''{'Name item': ['Desc item', 'icon_item.png', True/False}.'''
-
     list_items = ListProperty()
-    '''['Desc item', 'icon_item.png', True/False]...'''
-
     right_icons = ListProperty()
-    '''Список путей к иконкам для кнопок,
-    использующихся в пункте списка справа.'''
-
     flag = StringProperty('single_list')
 
     def __init__(self, **kvargs):
@@ -233,8 +214,6 @@ class Lists(BoxLayout):
 
 Builder.load_string(
 '''
-#:import MDList kivymd.list.MDList
-
 <RightButton>:
     # size_hint_x: None
     # size_hint_y: None

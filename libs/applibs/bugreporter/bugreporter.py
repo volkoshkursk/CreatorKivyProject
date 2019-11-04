@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 #
-# Окно для визуализации ошибок приложения.
-# Модуль взят и переработан из программы Kivy Designer -
-# графическом строителе интерфейсов для фреймворка Kivy.
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
 
 import os
 
@@ -11,9 +17,9 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.properties import ObjectProperty, BooleanProperty, StringProperty
 
 try:
-    from kivymd.button import MDFlatButton
+    from kivymd.uix.button import MDFlatButton
 except:
-	 raise ImportError('Install package KivyMD')
+     raise ImportError('Install package KivyMD')
 
 
 class BugReporter(FloatLayout):
@@ -25,19 +31,11 @@ class BugReporter(FloatLayout):
         'You can report this bug using the button bellow, helping us to fix it.'
     )
     txt_report = StringProperty('')
-
     callback_report = ObjectProperty()
-    '''Функция отправки баг-репорта'''
-
     report_readonly = BooleanProperty(False)
-    '''Запрещено ли редактировать текст ошибки'''
-
     icon_background = StringProperty('data/logo/kivy-icon-256.png')
-    '''Фоновое изображение окна'''
-
     txt_button_report = StringProperty('Report Bug')
     txt_button_close = StringProperty('Close')
-    '''Подписи кнопок'''
 
     def __init__(self, **kwargs):
         super(BugReporter, self).__init__(**kwargs)

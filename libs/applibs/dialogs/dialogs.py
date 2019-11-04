@@ -1,36 +1,30 @@
 # -*- coding: utf-8 -*-
-
-'''
-VKGroups
-
-Copyright © 2010-2018 HeaTTheatR
-
-Для предложений и вопросов:
-<kivydevelopment@gmail.com>
-
-Данный файл распространяется по условиям той же лицензии,
-что и фреймворк Kivy.
-
-'''
+#
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
 
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivy.metrics import dp
 from kivy.uix.modalview import ModalView
 
-from kivymd.cards import MDCard, MDSeparator
-from kivymd.dialog import MDDialog
-from kivymd.label import MDLabel
-from kivymd.button import MDFlatButton
+from kivymd.uix.card import MDCard, MDSeparator
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.label import MDLabel
+from kivymd.uix.button import MDFlatButton
 
 from . selection import Selection
 
 
 Builder.load_string(
 '''
-#:import MDSpinner kivymd.spinner.MDSpinner
-#:import MDTextField kivymd.textfields.MDTextField
-
 # Окно для ввода текста.
 
 [InputText@ModalView]:

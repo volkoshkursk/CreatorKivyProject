@@ -1,8 +1,20 @@
+# -*- coding: utf-8 -*-
+#
+# This file created with KivyCreatorProject
+# <https://github.com/HeaTTheatR/KivyCreatorProgect
+#
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
+#
+# For suggestions and questions:
+# <kivydevelopment@gmail.com>
+#
+# LICENSE: MIT
+
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang.builder import Builder
 from kivy.properties import ListProperty
 
-from kivymd.elevation import RectangularElevationBehavior
+from kivymd.uix.behaviors import RectangularElevationBehavior
 from kivymd.theming import ThemableBehavior
 from kivymd.vendor.navigationdrawer import NavigationDrawer
 

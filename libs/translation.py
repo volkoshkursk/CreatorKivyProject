@@ -1,4 +1,3 @@
-import os
 import gettext
 
 from kivy.lang import Observable
@@ -50,7 +49,7 @@ class Translation(Observable):
         try:
             self.ugettext = locales.ugettext
         except AttributeError:
-        	self.ugettext = locales.gettext
+            self.ugettext = locales.gettext
 
         # update all the kv rules attached to this text
         for func, largs, kwargs in self.observers:

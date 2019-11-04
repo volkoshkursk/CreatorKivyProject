@@ -3,16 +3,16 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright © 2017 Easy
+# Copyright (c) 2019 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
-# 
+#
 # LICENSE: MIT
 
 from kivy.properties import ObjectProperty
 
-from kivymd.navigationdrawer import NavigationLayout
+from kivymd.uix.navigationdrawer import NavigationLayout
 
 
 class NavDrawer(NavigationLayout):
