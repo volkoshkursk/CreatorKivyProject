@@ -10,6 +10,7 @@
 import os
 import sys
 import stat
+import platform
 
 import argparse
 import traceback
@@ -197,6 +198,10 @@ except OSError:
 else:
     Logger.info('KivyMD library installation completed!')
     Logger.info('Installing the Pillow library ...')
-    os.system('sudo pip install pillow')
-    os.system('sudo pip3 install pillow')
+    if platform.system().lower().find("win") > -1:
+        os.system('pip install pillow')
+        os.system('pip3 install pillow')
+    else:
+        os.system('sudo pip install pillow')
+        os.system('sudo pip3 install pillow')
     Logger.info('Project {} successfully created!'.format(NAME_PROJECT))
