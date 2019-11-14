@@ -9,6 +9,7 @@
 
 import os
 import sys
+import stat
 
 import argparse
 import traceback
@@ -21,6 +22,10 @@ from kivy.logger import PY2
 if PY2:
     FileNotFoundError = IOError
 
+# Refer to: https://stackoverflow.com/questions/1889597/deleting-directory-in-python
+def remove_readonly(func, path, excinfo):
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
 
 def write_file(in_file, out_file, values=False):
     string_file = open(out_file).read()
@@ -165,11 +170,11 @@ try:
     )
 except FileNotFoundError as exc:
     Logger.error('I can not find the project file - ' + str(exc))
-    shutil.rmtree(FULL_PATH_TO_PROJECT)
+    shutil.rmtree(FULL_PATH_TO_PROJECT, onerror=remove_readonly)
     sys.exit(0)
 except Exception as exc:
     Logger.error('Unknown error - \n' + traceback.format_exc())
-    shutil.rmtree(FULL_PATH_TO_PROJECT)
+    shutil.rmtree(FULL_PATH_TO_PROJECT, onerror=remove_readonly)
     sys.exit(0)
 
 Logger.info('Installing the KivyMD library ...')
@@ -186,7 +191,7 @@ try:
     os.rename(PATH_TO_KIVYMD, PATH_TO_KIVYMD_OLD)
     shutil.move(os.path.join(PATH_TO_KIVYMD_OLD, 'kivymd'), PATH_TO_APPLIBS)
     Logger.info('Clean KivyMD files ...')
-    shutil.rmtree(PATH_TO_KIVYMD_OLD)
+    shutil.rmtree(PATH_TO_KIVYMD_OLD, onerror=remove_readonly)
 except OSError:
     Logger.error('KivyMD library not installed!')
 else:
