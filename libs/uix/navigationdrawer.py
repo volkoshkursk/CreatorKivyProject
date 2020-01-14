@@ -19,7 +19,8 @@ from kivymd.theming import ThemableBehavior
 from kivymd.vendor.navigationdrawer import NavigationDrawer
 
 
-Builder.load_string("""
+Builder.load_string(
+    """
 #:import Window kivy.core.window.Window
 
 
@@ -41,12 +42,14 @@ Builder.load_string("""
         size_hint_y: None
         orientation: 'vertical'
         height: self.minimum_height
-""")
+"""
+)
 
 
-class ModifiedNavigationDrawer(BoxLayout, ThemableBehavior,
-                               RectangularElevationBehavior):
-    orientation = 'vertical'
+class ModifiedNavigationDrawer(
+    BoxLayout, ThemableBehavior, RectangularElevationBehavior
+):
+    orientation = "vertical"
     shadow_color = ListProperty([0, 0, 0, 0])
 
     def __init__(self, **kwargs):

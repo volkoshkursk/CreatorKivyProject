@@ -3,30 +3,15 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright (c) 2019 Ivanov Yuri and KivyMD
+# Copyright (c) 2020 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
 #
 # LICENSE: MIT
 
-from kivy.properties import ObjectProperty
-
-from kivymd.uix.navigationdrawer import NavigationLayout
+from kivy.uix.boxlayout import BoxLayout
 
 
-class NavDrawer(NavigationLayout):
-    _app = ObjectProperty()
-
-    def _toggle(self):
-        self.toggle_nav_drawer()
-
-    def add_name_previous_screen(self):
-        name_current_screen = self._app.manager.current
-        if self.state == 'open':
-            try:
-                if self._app.list_previous_screens[-1] == name_current_screen:
-                    return
-            except IndexError:
-                pass
-            self._app.list_previous_screens.append(name_current_screen)
+class NavDrawer(BoxLayout):
+    pass

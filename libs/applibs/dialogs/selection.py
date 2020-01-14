@@ -3,7 +3,7 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright (c) 2019 Ivanov Yuri and KivyMD
+# Copyright (c) 2020 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
@@ -15,7 +15,7 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty, ObjectProperty
 
 
-ACTIVITY = '''
+ACTIVITY = """
 <Selection>:
     spacing: dp(5)
     size_hint_y: None
@@ -34,7 +34,7 @@ ACTIVITY = '''
         markup: True
         theme_text_color: 'Primary'
         halign: 'left'
-'''
+"""
 
 
 class Selection(BoxLayout):

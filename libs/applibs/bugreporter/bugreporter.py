@@ -3,7 +3,7 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright (c) 2019 Ivanov Yuri and KivyMD
+# Copyright (c) 2020 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
@@ -19,36 +19,36 @@ from kivy.properties import ObjectProperty, BooleanProperty, StringProperty
 try:
     from kivymd.uix.button import MDFlatButton
 except:
-     raise ImportError('Install package KivyMD')
+    raise ImportError("Install package KivyMD")
 
 
 class BugReporter(FloatLayout):
-    title = StringProperty('Bug reporter')
-    label_info_for_user = StringProperty(
-        'Error in the program!'
-    )
+    title = StringProperty("Bug reporter")
+    label_info_for_user = StringProperty("Error in the program!")
     info_for_user = StringProperty(
-        'You can report this bug using the button bellow, helping us to fix it.'
+        "You can report this bug using the button bellow, helping us to fix it."
     )
-    txt_report = StringProperty('')
+    txt_report = StringProperty("")
     callback_report = ObjectProperty()
     report_readonly = BooleanProperty(False)
-    icon_background = StringProperty('data/logo/kivy-icon-256.png')
-    txt_button_report = StringProperty('Report Bug')
-    txt_button_close = StringProperty('Close')
+    icon_background = StringProperty("data/logo/kivy-icon-256.png")
+    txt_button_report = StringProperty("Report Bug")
+    txt_button_close = StringProperty("Close")
 
     def __init__(self, **kwargs):
         super(BugReporter, self).__init__(**kwargs)
 
         if not os.path.exists(self.icon_background):
-            self.icon_background = 'data/logo/kivy-icon-256.png'
+            self.icon_background = "data/logo/kivy-icon-256.png"
 
     def _close(self, *args):
         from kivy.app import App
+
         App.get_running_app().stop()
 
 
-Builder.load_string('''
+Builder.load_string(
+    """
 <BugReporter>:
     txt_traceback: txt_traceback
 
@@ -119,4 +119,5 @@ Builder.load_string('''
                 on_release:
                     if callable(root.callback_report): root.callback_report()
 
-''')
+"""
+)

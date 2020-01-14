@@ -3,7 +3,7 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright (c) 2019 Ivanov Yuri and KivyMD
+# Copyright (c) 2020 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
@@ -14,15 +14,16 @@ import os
 import sys
 from ast import literal_eval
 
-from kivy.app import App
-from kivy.uix.modalview import ModalView
+import os
+import sys
+from ast import literal_eval
+
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.config import ConfigParser
 from kivy.logger import PY2
 from kivy.clock import Clock
-from kivy.utils import get_color_from_hex, get_hex_from_color
-from kivy.metrics import dp
+from kivy.utils import get_hex_from_color
 from kivy.properties import ObjectProperty, StringProperty
 
 from main import __version__
@@ -30,19 +31,16 @@ from libs.translation import Translation
 from libs.uix.baseclass.startscreen import StartScreen
 from libs.uix.lists import Lists
 
-from kivymd.theming import ThemeManager
-from kivymd.uix.label import MDLabel
+from kivymd.app import MDApp
 from kivymd.toast import toast
 
 from dialogs import card
 
 
-class NAME_PROJECT(App):
+class NAME_PROJECT(MDApp):
     title = 'NAME_PROJECT'
     icon = 'icon.png'
     nav_drawer = ObjectProperty()
-    theme_cls = ThemeManager()
-    theme_cls.primary_palette = 'Blue'
     lang = StringProperty('en')
 
     def __init__(self, **kvargs):
@@ -116,7 +114,7 @@ class NAME_PROJECT(App):
                 self.manager.current = 'base'
             self.screen.ids.action_bar.title = self.title
             self.screen.ids.action_bar.left_action_items = \
-                [['menu', lambda x: self.nav_drawer._toggle()]]
+                [['menu', lambda x: self.nav_drawer.toggle_nav_drawer()]]
 
     def show_about(self, *args):
         self.nav_drawer.toggle_nav_drawer()
@@ -139,6 +137,7 @@ class NAME_PROJECT(App):
             [['chevron-left', lambda x: self.back_screen(27)]]
 
     def show_license(self, *args):
+        self.nav_drawer.toggle_nav_drawer()
         if not PY2:
             self.screen.ids.license.ids.text_license.text = \
                 self.translation._('%s') % open(
@@ -147,7 +146,6 @@ class NAME_PROJECT(App):
             self.screen.ids.license.ids.text_license.text = \
                 self.translation._('%s') % open(
                     os.path.join(self.directory, 'LICENSE')).read()
-        self.nav_drawer._toggle()
         self.manager.current = 'license'
         self.screen.ids.action_bar.left_action_items = \
             [['chevron-left', lambda x: self.back_screen(27)]]

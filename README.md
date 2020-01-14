@@ -9,17 +9,11 @@ The wizard for creating a new project for applications written using the Kivy fr
 
 LANGUAGE
 --------
-Python 2.7-3.6
+Python 3.7 +
 
 REQUIREMENTS
 ------------
 Framework [Kivy](http://kivy.org)
-
-git
-
-pip
-
-pip3
 
 INSTALLING
 ---------
@@ -53,7 +47,7 @@ COMMAND LINE ARGUMENTS
 
 VERSION
 -------
-Version 2.4.0
+Version 2.4.1
 
 CONTACTS
 --------

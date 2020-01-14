@@ -3,15 +3,15 @@
 # This file created with KivyCreatorProject
 # <https://github.com/HeaTTheatR/KivyCreatorProgect
 #
-# Copyright (c) 2019 Ivanov Yuri and KivyMD
+# Copyright (c) 2020 Ivanov Yuri and KivyMD
 #
 # For suggestions and questions:
 # <kivydevelopment@gmail.com>
 #
 # LICENSE: MIT
 
-from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.navigationdrawer import NavigationLayout
 
 
-class StartScreen(BoxLayout):
+class StartScreen(NavigationLayout):
     pass

@@ -4,7 +4,7 @@ from kivy.lang import Observable
 
 
 class Translation(Observable):
-    '''Write by tito - https://github.com/tito/kivy-gettext-example.'''
+    """Write by tito - https://github.com/tito/kivy-gettext-example."""
 
     observers = []
     lang = None
@@ -22,15 +22,13 @@ class Translation(Observable):
         try:
             return self.ugettext(text)
         except UnicodeDecodeError:
-            return self.ugettext(text.decode('utf-8'))
+            return self.ugettext(text.decode("utf-8"))
 
     def fbind(self, name, func, args, **kwargs):
         if name == "_":
             self.observers.append((func, args, kwargs))
         else:
-            return super(Translation, self).fbind(
-                name, func, *args, **kwargs
-            )
+            return super(Translation, self).fbind(name, func, *args, **kwargs)
 
     def funbind(self, name, func, args, **kwargs):
         if name == "_":
@@ -38,14 +36,11 @@ class Translation(Observable):
             if key in self.observers:
                 self.observers.remove(key)
         else:
-            return super(Translation, self).funbind(
-                name, func, *args, **kwargs
-            )
+            return super(Translation, self).funbind(name, func, *args, **kwargs)
 
     def switch_lang(self, lang):
         # get the right locales directory, and instanciate a gettext
-        locales = \
-            gettext.translation(self.domian, self.resource_dir, languages=[lang])
+        locales = gettext.translation(self.domian, self.resource_dir, languages=[lang])
         try:
             self.ugettext = locales.ugettext
         except AttributeError:
