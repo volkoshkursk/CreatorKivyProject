@@ -17,8 +17,8 @@ import traceback
 import shutil
 
 from kivy.logger import Logger
-from kivy.logger import PY2
 
+PY2 = sys.version_info.major == 2  
 
 if PY2:
     FileNotFoundError = IOError
